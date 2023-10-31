@@ -4,7 +4,11 @@ go 1.20
 
 require (
 	github.com/RangerMauve/ipld-prolly-indexer v0.0.0-20231027180450-d781528a42bc
+	github.com/ipfs/go-cid v0.4.1
+	github.com/ipld/go-car/v2 v2.13.1
+	github.com/ipld/go-ipld-prime v0.21.0
 	github.com/urfave/cli/v2 v2.25.7
+	github.com/zeebo/assert v1.3.1
 )
 
 require (
@@ -14,7 +18,6 @@ require (
 	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/ipfs/bbloom v0.0.4 // indirect
 	github.com/ipfs/go-block-format v0.2.0 // indirect
-	github.com/ipfs/go-cid v0.4.1 // indirect
 	github.com/ipfs/go-datastore v0.6.0 // indirect
 	github.com/ipfs/go-ipfs-blockstore v1.3.0 // indirect
 	github.com/ipfs/go-ipfs-ds-help v1.1.0 // indirect
@@ -24,8 +27,6 @@ require (
 	github.com/ipfs/go-log v1.0.5 // indirect
 	github.com/ipfs/go-log/v2 v2.5.1 // indirect
 	github.com/ipfs/go-metrics-interface v0.0.1 // indirect
-	github.com/ipld/go-car/v2 v2.13.1 // indirect
-	github.com/ipld/go-ipld-prime v0.21.0 // indirect
 	github.com/jbenet/goprocess v0.1.4 // indirect
 	github.com/kenlabs/go-ipld-prolly-trees v0.0.0-20231003160144-80ff2aa00397 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.3 // indirect
@@ -46,7 +47,6 @@ require (
 	github.com/whyrusleeping/cbor v0.0.0-20171005072247-63513f603b11 // indirect
 	github.com/whyrusleeping/cbor-gen v0.0.0-20230818171029-f91ae536ca25 // indirect
 	github.com/xrash/smetrics v0.0.0-20201216005158-039620a65673 // indirect
-	github.com/zeebo/assert v1.3.1 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/multierr v1.9.0 // indirect
 	go.uber.org/zap v1.24.0 // indirect
