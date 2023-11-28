@@ -7,7 +7,6 @@ import (
 	"io"
 	"log"
 	"os"
-	"strconv"
 
 	indexer "github.com/RangerMauve/ipld-prolly-indexer/indexer"
 	car "github.com/ipld/go-car/v2"
@@ -168,7 +167,7 @@ func ingestCSV(ctx context.Context, source io.Reader, collection *indexer.Collec
 		}
 
 		node, err := qp.BuildMap(basicnode.Prototype.Any, numFields, func(ma datamodel.MapAssembler) {
-			qp.MapEntry(ma, "index", qp.String(strconv.Itoa(index)))
+			qp.MapEntry(ma, "index", qp.Int(int64(index)))
 			for fieldIndex, fieldValue := range record {
 				qp.MapEntry(ma, headers[fieldIndex], qp.String(fieldValue))
 
