@@ -4,6 +4,8 @@ Take a csv file and turn it into a prolly tree based database indexed by row num
 
 Based on the [ipld-prolly-indexer](https://github.com/RangerMauve/ipld-prolly-indexer/) library
 
+Individual fields in a row will be parsed according to the [dag-json](https://ipld.io/docs/codecs/known/dag-json/) spec enabling structured data and lower memory usage in the case of numbers.
+
 `cat example.csv | csv-to-prolly-db -o example.car`
 
 ```
