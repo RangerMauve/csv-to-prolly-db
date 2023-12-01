@@ -7,12 +7,14 @@ import (
 	"io"
 	"log"
 	"os"
+	"strings"
 
 	indexer "github.com/RangerMauve/ipld-prolly-indexer/indexer"
 	car "github.com/ipld/go-car/v2"
 	carBlockstore "github.com/ipld/go-car/v2/blockstore"
 
 	cid "github.com/ipfs/go-cid"
+	dagjson "github.com/ipld/go-ipld-prime/codec/dagjson"
 	datamodel "github.com/ipld/go-ipld-prime/datamodel"
 	qp "github.com/ipld/go-ipld-prime/fluent/qp"
 	basicnode "github.com/ipld/go-ipld-prime/node/basicnode"
@@ -169,8 +171,16 @@ func ingestCSV(ctx context.Context, source io.Reader, collection *indexer.Collec
 		node, err := qp.BuildMap(basicnode.Prototype.Any, numFields, func(ma datamodel.MapAssembler) {
 			qp.MapEntry(ma, "index", qp.Int(int64(index)))
 			for fieldIndex, fieldValue := range record {
-				qp.MapEntry(ma, headers[fieldIndex], qp.String(fieldValue))
+				nb := basicnode.Prototype__Any{}.NewBuilder()
+				err := dagjson.Decode(nb, strings.NewReader(fieldValue))
 
+				// If it wasn't json, it's just a string
+				if err != nil {
+					qp.MapEntry(ma, headers[fieldIndex], qp.String(fieldValue))
+				} else {
+					value := nb.Build()
+					qp.MapEntry(ma, headers[fieldIndex], qp.Node(value))
+				}
 			}
 		})
 
