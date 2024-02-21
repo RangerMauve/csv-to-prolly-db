@@ -24,3 +24,37 @@ GLOBAL OPTIONS:
    --collection value, -c value  Name of database collection to save into (default: "default")
    --help, -h                    show help
 ```
+
+## nix flake
+
+You can run and package `csv-to-prolly-db` with [nix](https://nixos.org/download/) by referencing this flake.
+
+Run:
+
+```bash
+nix run github:RangerMauve/csv-to-prolly-db -- -i <my-csv>
+```
+
+Include as a package in another flake:
+
+```nix
+{
+  inputs = {
+    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    csv-to-prolly-db.url = "github:RangerMauve/csv-to-prolly-db?ref=default";
+  };
+
+  outputs = inputs @ { self, ... }:
+    (inputs.flake-utils.lib.eachDefaultSystem (system:
+      let
+
+        pkgs = import inputs.nixpkgs { inherit system; };
+
+        csv-to-prolly-db = inputs.csv-to-prolly-db.packages.${system}.default;
+
+    ...
+
+}
+```
+
